@@ -54,15 +54,18 @@ def get_user_preference(username, change_preferences=False):
     print("\nSet Traffic Preferences:")
     print("1. Fastest Route")
     print("2. Shortest Distance")
-    preference = input("Choose your preference (1/2): ")
+    print("3. Avoid Tolls/Highways")
+    preference = input("Choose your preference (1/2/3): ")
 
     if preference == '1':
-        user_preferences[username] = {"routeType": "fastest"}
+        user_preferences[username] = {"routeType": "fastest", "avoidTolls": False, "avoidHighways": False}
     elif preference == '2':
-        user_preferences[username] = {"routeType": "shortest"}
+        user_preferences[username] = {"routeType": "shortest", "avoidTolls": False, "avoidHighways": False}
+    elif preference == '3':
+        user_preferences[username] = {"routeType": "fastest", "avoidTolls": True, "avoidHighways": True}
     else:
         print("Invalid preference. Defaulting to fastest route.")
-        user_preferences[username] = {"routeType": "fastest"}
+        user_preferences[username] = {"routeType": "fastest", "avoidTolls": False, "avoidHighways": False}
 
     return user_preferences[username]
 
@@ -100,14 +103,20 @@ def route_finder(username):
             preference = get_user_preference(username)
 
         route_type = preference["routeType"]
+        avoid_tolls = preference["avoidTolls"]
+        avoid_highways = preference["avoidHighways"]
 
-        # Building the URL with route type
+        # Building the URL with additional parameters
         url_params = {
             "key": key,
             "from": orig,
             "to": dest,
             "routeType": route_type
         }
+        if avoid_tolls:
+            url_params["avoidtolls"] = "true"
+        if avoid_highways:
+            url_params["avoidHighways"] = "true"
 
         # Make the API request
         url = main_api + urllib.parse.urlencode(url_params)
