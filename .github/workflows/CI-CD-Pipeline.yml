@@ -48,8 +48,3 @@ jobs:
           run: |
             echo "WEATHER_API_KEY=${{ secrets.WEATHER_API_KEY }}" >> $GITHUB_ENV
             echo "MAPQUEST_API_KEY=${{ secrets.MAPQUEST_API_KEY }}" >> $GITHUB_ENV
-  
-        - name: Deploy Application
-          run: |
-            echo "Deploying application..."
-            # Add your deployment commands here, e.g., SSH to server or push Docker image
