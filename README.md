@@ -1,3 +1,4 @@
 # Map-Quest
-Map quest with User Authentication, Weather App, and Traffic Preferences
+Map quest with User Authentication, Weather App, and Traffic Preferences.
 This project integrates REST APIs to provide essential features like weather updates, secure login authentication, and user-specific preferences for route customization. The application is designed to demonstrate practical API usage and enhance user experience through personalization and dynamic content.
+By incorporating real-time weather data, users can plan their day with accurate information. The secure login ensures that personal data is protected, while the customizable route options allow users to tailor their navigation experience based on preferences like avoiding tolls or highways. These features not only improve convenience and security but also showcase how APIs can be used to create a flexible and user-friendly application.
