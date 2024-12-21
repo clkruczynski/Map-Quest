@@ -17,6 +17,7 @@ class TestApp(unittest.TestCase):
         result = validate_location('New York')
         self.assertEqual(result, True)
 
+    #ensures that the login function handles incorrect passwords and allows successful logins with correct credentials.
     def test_login_failure(self):
         register("test_user", "password123")
         result = login("test_user", "wrongpassword")
@@ -32,12 +33,13 @@ class TestApp(unittest.TestCase):
         result = get_weather('InvalidLocation')
         self.assertIn('Unable to fetch weather', result)
 
+    #This test overlaps with test_route_and_weather. Consider consolidating them if there’s a specific reason for separate tests.
     def test_weather_check(self):
         result = get_weather('Boston')
         self.assertIn('Weather at Boston', result)
 
         result = get_weather('InvalidLocation')
         self.assertIn('Unable to fetch weather', result)
-
+#This ensures compatibility with test discovery tools like python -m unittest.
 if __name__ == '__main__':
     unittest.main()
