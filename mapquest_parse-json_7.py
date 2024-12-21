@@ -6,6 +6,7 @@ main_api = "https://www.mapquestapi.com/directions/v2/route?"
 key = "wMz7DsbJzW5VjP5iOmrXqKMrOISKfgaY"
 
 while True:
+    #Breaks the loop if the user enters 
     orig = input("Starting Location: ")
     if orig == "quit" or orig == "q":
         break
@@ -15,8 +16,8 @@ while True:
     url = main_api + urllib.parse.urlencode({"key": key, "from":orig, "to":dest})
     print("URL: " + (url))
     json_data = requests.get(url).json()
-    json_status = json_data["info"]["statuscode"]
-    if json_status == 0:
+    json_status = json_data["info"]["statuscode"] #Extracts the statuscode from the response JSON to determine the success or failure of the API call.
+     if json_status == 0:
         print("API Status: " + str(json_status) + " = A successful route call.\n")
         print("=============================================")
         print("Directions from " + (orig) + " to " + (dest))
